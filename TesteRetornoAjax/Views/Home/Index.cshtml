@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section scripts{
+    <script>
+    function PopCollection(dados) {
+        var quantidade = 0;
+        var Coll = [];
+
+        while (quantidade < dados.length) {
+            Coll.push(dados[quantidade].NiveisLabel);
+            alert("Qtde: " + dados.length + " - " + Coll[quantidade]);
+            quantidade++;
+        }
+    }
+
+    $.ajax({
+        dataType: "json",
+        type: "GET",
+        url: "Home/getData",
+        contentType: "application/json; charset=utf-8",
+        success: function (result, callback) {
+            PopCollection(result);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert("Error Fired!");
+
+        }
+    });
+    </script>
+
+}
